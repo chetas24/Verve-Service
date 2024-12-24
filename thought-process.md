@@ -1,9 +1,9 @@
-# Thought Process for the Verve-Service Implementation
+# Thought Process for the UniqueIDTracker-Service Implementation
 
 ## Design Considerations
 
 ### Overview
-The goal of the `Verve-Service` implementation was to create a REST service capable of processing at least 10,000 requests per second while adhering to the outlined requirements and extensions. Below are the key design decisions and approaches used to meet the functional and non-functional requirements:
+The goal of the `UniqueIDTracker-Service` implementation was to create a REST service capable of processing at least 10,000 requests per second while adhering to the outlined requirements and extensions. Below are the key design decisions and approaches used to meet the functional and non-functional requirements:
 
 ### Core Features
 1. **High Throughput:**
@@ -50,7 +50,7 @@ Instead of firing an HTTP GET request, a POST request is sent with a custom JSON
 ## Implementation Details
 
 ### Application Architecture
-- **Controller Layer**: Exposes the `/api/verve/accept` endpoint.
+- **Controller Layer**: Exposes the `/api/UniqueIDTracker/accept` endpoint.
 - **Service Layer**: Handles business logic, including deduplication, asynchronous requests, and scheduled tasks.
 - **Repository Layer**: Provides an abstraction over Redis for deduplication.
 
@@ -76,7 +76,7 @@ Instead of firing an HTTP GET request, a POST request is sent with a custom JSON
 
 ### Functional Testing with Postman
 1. **Endpoints Tested**:
-    - **GET /api/verve/accept**: Verified handling of both valid and invalid requests.
+    - **GET /api/uniqueIDTracker/accept**: Verified handling of both valid and invalid requests.
     - Payloads:
         - Valid: `id` and `endpoint` query parameters.
         - Invalid: Missing `id` or invalid data types.
@@ -90,7 +90,7 @@ Instead of firing an HTTP GET request, a POST request is sent with a custom JSON
 
 ### Performance Testing with JMeter
 1. **Test Setup**:
-    - Configured JMeter to send concurrent requests to `/api/verve/accept`.
+    - Configured JMeter to send concurrent requests to `/api/UniqueIDTracker/accept`.
     - Simulated 10,000+ requests per second using thread groups.
 
 2. **Performance Metrics**:

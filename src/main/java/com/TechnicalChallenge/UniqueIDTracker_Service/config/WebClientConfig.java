@@ -1,4 +1,4 @@
-package com.TechnicalChallenge.Verve_Service.config;
+package com.TechnicalChallenge.UniqueIDTracker_Service.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

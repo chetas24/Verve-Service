@@ -1,8 +1,8 @@
-package com.TechnicalChallenge.Verve_Service.service;
+package com.TechnicalChallenge.UniqueIDTracker_Service.service;
 
-import com.TechnicalChallenge.Verve_Service.dto.PostRequestPayload;
-import com.TechnicalChallenge.Verve_Service.model.VerveModel;
-import com.TechnicalChallenge.Verve_Service.repository.VerveRepository;
+import com.TechnicalChallenge.UniqueIDTracker_Service.dto.PostRequestPayload;
+import com.TechnicalChallenge.UniqueIDTracker_Service.model.UniqueIDTrackerModel;
+import com.TechnicalChallenge.UniqueIDTracker_Service.repository.UniqueIDTrackerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,9 @@ import java.time.Duration;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
-public class VerveService {
+public class UniqueIDTrackerService {
 
-    private static final Logger log = LoggerFactory.getLogger(VerveService.class);
+    private static final Logger log = LoggerFactory.getLogger(UniqueIDTrackerService.class);
     private final AtomicInteger atomicInteger = new AtomicInteger(0);
 
     @Autowired
@@ -31,7 +31,7 @@ public class VerveService {
     private RedisService redisService;
 
     @Autowired
-    private VerveRepository verveRepository;
+    private UniqueIDTrackerRepository uniqueIDTrackerRepository;
 
     public ResponseEntity<String> processRequest(PostRequestPayload payload)
     {
@@ -51,8 +51,8 @@ public class VerveService {
             boolean isNew = redisService.saveIfAbsent(redisKey, value, 60);
             if(isNew)
             {
-                VerveModel verveModel = new VerveModel(id, endpoint);
-                verveRepository.save(verveModel);
+                UniqueIDTrackerModel uniqueIDTrackerModel = new UniqueIDTrackerModel(id, endpoint);
+                uniqueIDTrackerRepository.save(uniqueIDTrackerModel);
                 atomicInteger.incrementAndGet();
             }
 
@@ -100,7 +100,7 @@ public class VerveService {
             log.info("Reporting unique request count: {}", count);
             kafkaService.sendCountToKafka(count);
             redisService.clearSet("uniqueIds");
-            verveRepository.clearCache();
+            uniqueIDTrackerRepository.clearCache();
         }catch (Exception e) {
             log.error("Error during scheduled report: {}", e.getMessage(), e);
         }

@@ -1,7 +1,7 @@
-package com.TechnicalChallenge.Verve_Service.controller;
+package com.TechnicalChallenge.UniqueIDTracker_Service.controller;
 
-import com.TechnicalChallenge.Verve_Service.dto.PostRequestPayload;
-import com.TechnicalChallenge.Verve_Service.service.VerveService;
+import com.TechnicalChallenge.UniqueIDTracker_Service.dto.PostRequestPayload;
+import com.TechnicalChallenge.UniqueIDTracker_Service.service.UniqueIDTrackerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,20 +9,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/verve")
-public class VerveController {
+@RequestMapping("/api/UniqueIDTracker")
+public class UniqueIDTrackerController {
 
-    private static final Logger log = LoggerFactory.getLogger(VerveController.class);
+    private static final Logger log = LoggerFactory.getLogger(UniqueIDTrackerController.class);
 
     @Autowired
-    private VerveService verveService;
+    private UniqueIDTrackerService uniqueIDTrackerService;
 
     @GetMapping("/accept")
     public ResponseEntity<String> acceptRequest(@RequestParam Long id, @RequestParam(required = false) String endpoint)
     {
         try {
             PostRequestPayload payload = new PostRequestPayload(id, endpoint, 0);
-            return verveService.processRequest(payload);
+            return uniqueIDTrackerService.processRequest(payload);
         }catch (Exception e)
         {
             log.error("Error in acceptRequest: {}", e.getMessage(), e);

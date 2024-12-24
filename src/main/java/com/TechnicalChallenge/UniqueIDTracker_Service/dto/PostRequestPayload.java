@@ -1,4 +1,4 @@
-package com.TechnicalChallenge.Verve_Service.dto;
+package com.TechnicalChallenge.UniqueIDTracker_Service.dto;
 
 public class PostRequestPayload {
 

@@ -1,11 +1,11 @@
-package com.TechnicalChallenge.Verve_Service.model;
+package com.TechnicalChallenge.UniqueIDTracker_Service.model;
 
-public class VerveModel {
+public class UniqueIDTrackerModel {
 
     private Long id;
     private String endpoint;
 
-    public VerveModel(Long id, String endpoint) {
+    public UniqueIDTrackerModel(Long id, String endpoint) {
         this.id = id;
         this.endpoint = endpoint;
     }

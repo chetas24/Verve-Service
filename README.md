@@ -1,13 +1,13 @@
-# Verve-Service
+# UniqueIDTracker-Service
 
 ## Overview
 
-The `Verve-Service` is a high-performance REST service designed to handle at least 10,000 requests per second. The service processes incoming requests, logs unique IDs, and integrates with external systems such as Redis for deduplication, Kafka for distributed messaging, and a load balancer for horizontal scaling. It is implemented using Java and Spring Boot and is containerized for easy deployment.
+The `UniqueIDTracker-Service` is a high-performance REST service designed to handle at least 10,000 requests per second. The service processes incoming requests, logs unique IDs, and integrates with external systems such as Redis for deduplication, Kafka for distributed messaging, and a load balancer for horizontal scaling. It is implemented using Java and Spring Boot and is containerized for easy deployment.
 
 ## Features
 
 1. **High-Performance REST API**
-    - Endpoint: `/api/verve/accept`
+    - Endpoint: `/api/UniqueIDTracker/accept`
     - Accepts an integer `id` as a mandatory query parameter and an optional string `endpoint`.
     - Returns:
         - "ok" for successful processing.
@@ -29,12 +29,12 @@ The `Verve-Service` is a high-performance REST service designed to handle at lea
 1. Clone the repository:
    ```bash
    git clone <repository-link>
-   cd Verve-Service
+   cd UniqueIDTracker-Service
    ```
 
 2. Build the Docker image:
    ```bash
-   docker build -t verve-service .
+   docker build -t uniqueIDTracker-service .
    ```
 
 3. Start the application using Docker Compose:
@@ -58,7 +58,7 @@ The application is configured via the `application.properties` file. Key configu
 
 1. Send a request to the API:
    ```bash
-   curl "http://localhost/api/verve/accept?id=123&endpoint=http://example.com"
+   curl "http://localhost/api/uniqueIDTracker/accept?id=123&endpoint=http://example.com"
    ```
 
 2. Verify logs for unique request counts and HTTP status codes.

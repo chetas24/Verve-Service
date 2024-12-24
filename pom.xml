@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.TechnicalChallenge</groupId>
-	<artifactId>Verve-Service</artifactId>
+	<artifactId>UniqueIDTracker-Service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Verve-Service</name>
+	<name>UniqueIDTracker</name>
 	<description>REST service for handling unique requests and distributed streaming</description>
 	<url/>
 	<licenses>
